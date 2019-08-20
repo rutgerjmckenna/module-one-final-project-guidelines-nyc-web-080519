@@ -44,7 +44,7 @@ end
 # READING MY EVENTS
 
 def list_of_events
-    puts Event.all.name
+    puts tp Event.all
     puts "What would you like to do next?"
     sleep 1
     puts "1) Return to main menu"
@@ -73,7 +73,7 @@ end
 def find_show
     puts "Here are the shows currently avaliable in your area:"
     sleep 1
-    puts Show.all
+    puts tp Show.all
     sleep 2
     could_create_event
 end

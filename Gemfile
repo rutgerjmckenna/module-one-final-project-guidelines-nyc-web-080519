@@ -5,4 +5,5 @@ gem "sinatra-activerecord"
 gem "sqlite3"
 gem "pry"
 gem "require_all"
-gem "terminal-table"
+gem "table_print"
+gem 'rest-client'
