@@ -17,6 +17,7 @@ GEM
     concurrent-ruby (1.0.5)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.7.5)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.1)
@@ -60,6 +61,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dotenv
   pry
   require_all
   rest-client

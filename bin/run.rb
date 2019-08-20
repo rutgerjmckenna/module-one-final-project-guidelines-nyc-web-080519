@@ -1,8 +1,7 @@
 require_relative '../config/environment'
 
+def run_app
+    greeting
+end 
 
-
-# greeting
-
-# cli = CommandLineInterface.new
-# cli.run
+run_app

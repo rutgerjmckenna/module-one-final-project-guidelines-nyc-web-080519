@@ -1,3 +1,8 @@
+require 'rest-client'
+require 'json'
+require 'pry' 
+require 'dotenv'
+
 def greeting
     puts "Welecome to Showffeur! Making your live music ~organized~"
     sleep 1
@@ -11,8 +16,9 @@ def greeting
     sleep 1
     puts "2) Add a new show?"
     input = STDIN.gets.chomp
-    if input == "1"
+    if input == "1" && Event.all !=nil
         list_of_events
+    elsif input == "1" && Event.all = nil 
     elsif input == "2"
         find_show
     else
@@ -27,6 +33,8 @@ end
     #FIND SHOW requirements: city, state, time period (given ranges or day, weekend, or month), time-later-than
 #-----------------------------------------------------------------------------------------------------------------------
 # READING MY EVENTS
+
+
 
 def find_event
     puts "Which event are you looking for?"
@@ -44,7 +52,7 @@ end
 # READING MY EVENTS
 
 def list_of_events
-    puts tp Event.all
+    puts Event.all
     puts "What would you like to do next?"
     sleep 1
     puts "1) Return to main menu"
@@ -69,6 +77,28 @@ end
 
 #-----------------------------------------------------------------------------------------------------------------------
 #FINDING A SHOW
+
+def get_all_our_shows_from_api
+    all_shows = RestClient.get("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=296&apikey=#{ENV['API_KEY']}")
+    show_hash = JSON.parse(all_shows)
+    binding.pry
+        i = 0 
+        while i <= 19
+        name = show_hash["_embedded"]["events"][i]["name"]
+        city_name = show_hash["_embedded"]["events"][i]["_embedded"]["venues"][0]["city"]["name"]
+        state_name = show_hash["_embedded"]["events"][i]["_embedded"]["venues"][0]["state"]["stateCode"]
+        venue_name = show_hash["_embedded"]["events"][i]["_embedded"]["venues"][0]["name"]
+        date = show_hash["_embedded"]["events"][i]["dates"]["start"]["localDate"]
+        time = show_hash["_embedded"]["events"][i]["dates"]["start"]["localTime"]
+        genre = show_hash["_embedded"]["events"][i]["classifications"][0]["genre"]["name"]
+        Show.create({name: name, city: city_name, state: state_name, venue: venue_name, local_date: date, local_time: time, genre: genre})
+        i += 1
+    end 
+end 
+
+get_all_our_shows_from_api
+
+
 
 def find_show
     puts "Here are the shows currently avaliable in your area:"
