@@ -13,7 +13,7 @@ def my_shows
     my_shows = my_events.map do |event|
         Show.all[event.show_id-1]
     end 
-    puts tp my_shows, :name, :city, :state, :venue, :locate_date, :locate_time, :genre
+    puts tp my_shows
 end
 
 # def list_my_event_ids

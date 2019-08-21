@@ -91,6 +91,32 @@ end
 #-----------------------------------------------------------------------------------------------------------------------
 #DELETE EVENT
 
+# def delete_event
+#     puts "Which event would you like to delete?"
+#     input = STDIN.gets.chomp.to_i
+    
+#     Event.all.each do |event|
+#         i = 0
+#         if i < Event.all.count
+#             event.show_id == input && event.user_id == @@new_user.id 
+#             event.delete(input)
+#             puts "That show is now off your list."
+#         elsif
+#             i += 1
+#         else puts "That is not a show in your list"
+#             delete_event
+#         end 
+#     end 
+# end 
+
+def delete_event
+    puts "Which event would you like to delete?"
+    input = STDIN.gets.chomp.to_i
+
+    show = Show.find(input)
+    user = User.find(@@new_user.id)
+    Event.where(show_id: show.id, user_id: user.id).destroy_all
+end 
 
 
 #-----------------------------------------------------------------------------------------------------------------------
