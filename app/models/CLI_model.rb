@@ -3,10 +3,14 @@ require 'json'
 require 'pry' 
 require 'dotenv'
 
+@@new_user
+
 def greeting
-    puts "Welecome to Showffeur! Making your live music ~organized~"
+    puts "Welecome to Showffeur! Making your live music organized"
     sleep 1
-    puts "Welcome Rutger!"
+    login
+    sleep 1
+    puts "Welcome #{@@new_user.first_name}!"
     sleep 1
     puts "Would you like to..."
     sleep 1
@@ -32,6 +36,20 @@ end
 
     #FIND SHOW requirements: city, state, time period (given ranges or day, weekend, or month), time-later-than
 #-----------------------------------------------------------------------------------------------------------------------
+# Login 
+
+def login 
+    puts "What is your first name?"
+    f_name = STDIN.gets.chomp
+    puts "What is your last name?"
+    l_name = STDIN.gets.chomp
+    puts "How old are you?"
+    years_since_birth = STDIN.gets.chomp
+    @@new_user = User.find_or_create_by({first_name: f_name, last_name: l_name, age: years_since_birth})
+end 
+
+
+#-----------------------------------------------------------------------------------------------------------------------
 # READING MY EVENTS
 
 
@@ -52,7 +70,7 @@ end
 # READING MY EVENTS
 
 def list_of_events
-    puts Event.all
+    puts tp @@new_user.my_shows
     puts "What would you like to do next?"
     sleep 1
     puts "1) Return to main menu"
@@ -78,25 +96,24 @@ end
 #-----------------------------------------------------------------------------------------------------------------------
 #FINDING A SHOW
 
-def get_all_our_shows_from_api
-    all_shows = RestClient.get("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=296&apikey=#{ENV['API_KEY']}")
-    show_hash = JSON.parse(all_shows)
-    binding.pry
-        i = 0 
-        while i <= 19
-        name = show_hash["_embedded"]["events"][i]["name"]
-        city_name = show_hash["_embedded"]["events"][i]["_embedded"]["venues"][0]["city"]["name"]
-        state_name = show_hash["_embedded"]["events"][i]["_embedded"]["venues"][0]["state"]["stateCode"]
-        venue_name = show_hash["_embedded"]["events"][i]["_embedded"]["venues"][0]["name"]
-        date = show_hash["_embedded"]["events"][i]["dates"]["start"]["localDate"]
-        time = show_hash["_embedded"]["events"][i]["dates"]["start"]["localTime"]
-        genre = show_hash["_embedded"]["events"][i]["classifications"][0]["genre"]["name"]
-        Show.create({name: name, city: city_name, state: state_name, venue: venue_name, local_date: date, local_time: time, genre: genre})
-        i += 1
-    end 
-end 
+# def get_all_our_shows_from_api
+#     all_shows = RestClient.get("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=296&apikey=#{ENV['API_KEY']}")
+#     show_hash = JSON.parse(all_shows)
+#         i = 0 
+#         while i <= 19
+#         name = show_hash["_embedded"]["events"][i]["name"]
+#         city_name = show_hash["_embedded"]["events"][i]["_embedded"]["venues"][0]["city"]["name"]
+#         state_name = show_hash["_embedded"]["events"][i]["_embedded"]["venues"][0]["state"]["stateCode"]
+#         venue_name = show_hash["_embedded"]["events"][i]["_embedded"]["venues"][0]["name"]
+#         date = show_hash["_embedded"]["events"][i]["dates"]["start"]["localDate"]
+#         time = show_hash["_embedded"]["events"][i]["dates"]["start"]["localTime"]
+#         genre = show_hash["_embedded"]["events"][i]["classifications"][0]["genre"]["name"]
+#         Show.create({name: name, city: city_name, state: state_name, venue: venue_name, local_date: date, local_time: time, genre: genre})
+#         i += 1
+#     end 
+# end 
 
-get_all_our_shows_from_api
+# get_all_our_shows_from_api
 
 
 
@@ -133,7 +150,14 @@ end
 
 def create_event
     puts "Which show would you like to add to your list of events?"
-    input = STDIN.gets.chomp
-    if input 
+    input = STDIN.gets.chomp.to_i
+    if input.between?(0,21)
+        Event.create({user_id: @@new_user.id, show_id: input, name: "Event"})
+        puts "The show has been added to your events list."
+        greeting
+    elsif puts "Please enter a number between 1 and 20"
+        create_event
     end 
+    #exit method
+    #main menu
 end
