@@ -9,3 +9,4 @@ gem "table_print"
 gem 'rest-client'
 gem 'dotenv'
 gem 'colorize'
+gem 'rake'

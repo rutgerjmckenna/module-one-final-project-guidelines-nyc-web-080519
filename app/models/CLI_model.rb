@@ -8,7 +8,7 @@ $new_user = User.new
 
 def greeting
     puts logo.to_s.colorize(:blue)
-    puts "Welecome to Showffeur! Making your live music organized."
+    puts "Welecome to Showffeur! Making your live music organized.".colorize(:blue)
     puts ""
     sleep 1
     login
@@ -43,22 +43,24 @@ def welcome_back
     puts ""
     puts "Please select an option from our main menu."
     puts ""
-    puts "*** MAIN MENU ***"
-    puts "1. See your current list of shows?"
-    puts "2. Add a new show?"
+    puts "*********** MAIN - MENU ***********".colorize(:green)
+    puts "1. See your current list of shows."
+    puts "-----------------------------------".colorize(:green)
+    puts "2. Add a new show."
+    puts "***********************************".colorize(:green)
     input = STDIN.gets.chomp
     puts ""
     if input == "1" && Event.all != []
         list_of_events
     elsif input == "1" && Event.all == []
-        puts "You have no shows."
+        puts "You have no shows. Appease the rock gods and book some.".colorize(:red)
         welcome_back
     elsif input == "2"
         find_show
     elsif input == "exit"
         welcome_back
     else
-        puts "Wanna try that again?"
+        puts "Please enter the number corresponding to the option to continue.".colorize(:red)
         welcome_back
     end
 end
@@ -95,7 +97,10 @@ def find_event
         elsif input == "exit"
             welcome_back
         else
-            puts "Try a different event"
+            puts ""
+            puts "Try a different event".colorize(:red)
+            puts ""
+            sleep 1
             find_event
         end
 end
@@ -104,12 +109,17 @@ end
 # READING MY EVENTS
 
 def list_of_events
-    puts $new_user.my_shows
+    puts $new_user.my_shows.to_s
+    puts "*********************************************".colorize(:green)
     puts "What would you like to do next?"
     sleep 1
+    puts "---------------------------------------------".colorize(:green)
     puts "1) Return to main menu"
+    puts "---------------------------------------------".colorize(:green)
     puts "2) Delete event"
+    puts "---------------------------------------------".colorize(:green)
     puts "3) Look at local shows to add a new event"
+    puts "*********************************************".colorize(:green)
     input = STDIN.gets.chomp
     puts ""
     if input == "1"
@@ -152,10 +162,10 @@ def delete_event
     user = User.find($new_user.id)
     Event.where(show_id: show.id, user_id: user.id).destroy_all
     puts ""
-    puts "Your show has been deleted."
+    puts "Your show has been deleted.".colorize(:green)
     welcome_back
     else 
-    "This show doesn't exist, dum dum!"
+    "That show doesn't exist in your booked events.".colorize(:red)
     welcome_back
     end 
 end 
@@ -200,8 +210,11 @@ def could_create_event
     puts ""
     puts "Would you like to add one of these to your events?"
     sleep 1
+    puts "**********************************************".colorize(:green)
     puts "1) Yes please!"
+    puts "----------------------------------------------".colorize(:green)
     puts "2) No thank you, I'll return to the main menu."
+    puts "**********************************************".colorize(:green)
     input = STDIN.gets.chomp
     if input == "1"
         create_event
@@ -210,7 +223,7 @@ def could_create_event
     elsif input == "exit"
         welcome_back
     else
-        "Please choose 1 or 2"
+        puts "Please enter the number corresponding to the option to continue.".colorize(:red)
         could_create_event
     end
 end
@@ -227,17 +240,17 @@ def create_event
         puts ""
         puts ".".colorize(:red)
         sleep 0.5
-        puts "..".colorize(:yellow)
+        puts "..".colorize(:red)
         sleep 0.5
-        puts "...".colorize(:green)
+        puts "...".colorize(:red)
         sleep 0.5
         puts ""
-        puts "The show has been added to your events list."
+        puts "The show has been added to your events list! Rock on!".colorize(:green)
         sleep 1
         puts "Sending you back to the main menu."
         sleep 1.5
         welcome_back
-    elsif puts "Please enter a number between 1 and 20"
+    elsif puts "Please enter a number between 1 and 20".colorize(:red)
         create_event
     elsif input == "exit"
         welcome_back
