@@ -11,23 +11,29 @@ def greeting
     login
     sleep 1
     puts "Welcome #{@@new_user.first_name}!"
-    sleep 1
-    puts "Would you like to..."
-    sleep 1
+    welcome_back
+end
+
+def welcome_back
+    puts "*** MAIN MENU ***"
     puts "1) See your current list of shows?"
     sleep 0.5
     puts "OR"
     sleep 1
     puts "2) Add a new show?"
     input = STDIN.gets.chomp
-    if input == "1" && Event.all !=nil
+    if input == "1" && Event.all != []
         list_of_events
-    elsif input == "1" && Event.all = nil 
+    elsif input == "1" && Event.all == []
+        puts "You have no shows."
+        welcome_back
     elsif input == "2"
         find_show
+    elsif input == "exit"
+        welcome_back
     else
         puts "Wanna try that again?"
-        greeting
+        welcome_back
     end
 end
 #immeditately asks for name and returns your events tied to that name
@@ -43,9 +49,7 @@ def login
     f_name = STDIN.gets.chomp
     puts "What is your last name?"
     l_name = STDIN.gets.chomp
-    puts "How old are you?"
-    years_since_birth = STDIN.gets.chomp
-    @@new_user = User.find_or_create_by({first_name: f_name, last_name: l_name, age: years_since_birth})
+    @@new_user = User.find_or_create_by({first_name: f_name, last_name: l_name})
 end 
 
 
@@ -60,6 +64,8 @@ def find_event
     event = Event.find_by(name: input)
         if event
             event
+        elsif input == "exit"
+            welcome_back
         else
             puts "Try a different event"
             find_event
@@ -80,11 +86,13 @@ def list_of_events
     puts "3) Look at local shows to add a new event"
     input = STDIN.gets.chomp
     if input == "1"
-        greeting
+        welcome_back
     elsif input == "2"
         delete_event
     elsif input == "3"
         find_show
+    elsif input == "exit"
+        welcome_back
     end
 end
 
@@ -112,15 +120,21 @@ end
 def delete_event
     puts "Which event would you like to delete?"
     input = STDIN.gets.chomp.to_i
-
+    if 
     show = Show.find(input)
     user = User.find(@@new_user.id)
     Event.where(show_id: show.id, user_id: user.id).destroy_all
+    puts "Your show has been deleted."
+    welcome_back
+    else 
+    "This show doesn't exist, dum dum!"
+    welcome_back
+    end 
 end 
 
 
 #-----------------------------------------------------------------------------------------------------------------------
-#FINDING A SHOW
+# FINDING A SHOW
 
 # def get_all_our_shows_from_api
 #     all_shows = RestClient.get("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=296&apikey=#{ENV['API_KEY']}")
@@ -164,7 +178,9 @@ def could_create_event
     if input == "1"
         create_event
     elsif input == "2"
-        greeting
+        welcome_back
+    elsif input == "exit"
+        welcome_back
     else
         "Please choose 1 or 2"
         could_create_event
@@ -180,9 +196,11 @@ def create_event
     if input.between?(0,21)
         Event.create({user_id: @@new_user.id, show_id: input, name: "Event"})
         puts "The show has been added to your events list."
-        greeting
+        welcome_back
     elsif puts "Please enter a number between 1 and 20"
         create_event
+    elsif input == "exit"
+        welcome_back
     end 
     #exit method
     #main menu
