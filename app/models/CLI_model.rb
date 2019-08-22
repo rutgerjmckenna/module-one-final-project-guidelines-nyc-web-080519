@@ -213,8 +213,8 @@ def create_event
     puts ""
     puts "Which show would you like to add to your list of events?"
     input = STDIN.gets.chomp.to_i
-    if input.between?(0,21)
-        Event.create({user_id: $new_user.id, show_id: input, name: "Event"})
+    if input.between?(0,21) && $new_user.my_event_ids.each.exclude?(input)
+        Event.create({user_id: $new_user.id, show_id: input, name: "Event"}) 
         puts ""
         puts ".".colorize(:red)
         sleep 0.5
@@ -228,9 +228,12 @@ def create_event
         puts "Sending you back to the main menu."
         sleep 1.5
         welcome_back
-    elsif puts "Please enter a number between 1 and 20".colorize(:red)
-        create_event
-    elsif input == "exit"
-        welcome_back
+         elsif input == "exit"
+            welcome_back
+         else puts "Please enter a number between 1 and 20 or make sure the show isn't already in your events".colorize(:red)
+            puts ""
+            puts ""
+            sleep 2
+            find_show
     end 
 end

@@ -9,6 +9,14 @@ def my_events
     end
 end 
 
+def my_event_ids
+    my_ids = []
+    my_events.each do |event|
+        my_ids << event.show_id
+    end
+    my_ids
+end
+
 def my_shows
     my_shows = my_events.map do |event|
         Show.all[event.show_id-1]
