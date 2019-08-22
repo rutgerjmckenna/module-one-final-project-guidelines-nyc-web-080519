@@ -2,26 +2,52 @@ require 'rest-client'
 require 'json'
 require 'pry' 
 require 'dotenv'
+require 'colorize'
 
-@@new_user
+$new_user = User.new
 
 def greeting
-    puts "Welecome to Showffeur! Making your live music organized"
+    puts logo.to_s.colorize(:blue)
+    puts "Welecome to Showffeur! Making your live music organized."
+    puts ""
     sleep 1
     login
     sleep 1
-    puts "Welcome #{@@new_user.first_name}!"
+    puts "Welcome #{$new_user.first_name}!"
     welcome_back
 end
 
+def logo 
+    <<-STRING
+    ,gg,                                                                                            
+    i8""8i   ,dPYb,                                   ,dPYb,  ,dPYb,                                 
+    `8,,8'   IP'`Yb                                   IP'`Yb  IP'`Yb                                 
+     `88'    I8  8I                                   I8  8I  I8  8I                                 
+     dP"8,   I8  8'                                   I8  8'  I8  8'                                 
+    dP' `8a  I8 dPgg,     ,ggggg,    gg    gg    gg   I8 dP   I8 dP    ,ggg,   gg      gg   ,gggggg, 
+   dP'   `Yb I8dP" "8I   dP"  "Y8ggg I8    I8    88bg I8dP    I8dP    i8" "8i  I8      8I   dP""""8I 
+_ ,dP'     I8 I8P    I8  i8'    ,8I   I8    I8    8I   I8P     I8P     I8, ,8I  I8,    ,8I  ,8'    8I 
+"888,,____,dP,d8     I8,,d8,   ,d8'  ,d8,  ,d8,  ,8I  ,d8b,_  ,d8b,_   `YbadP' ,d8b,  ,d8b,,dP     Y8,
+a8P"Y88888P" 88P     `Y8P"Y8888P"    P""Y88P""Y88P"   PI8"8888PI8"8888888P"Y8888P'"Y88P"`Y88P      `Y8
+                                                      I8 `8,  I8 `8,                                 
+                                                      I8  `8, I8  `8,                                
+                                                      I8   8I I8   8I                                
+                                                      I8   8I I8   8I                                
+                                                      I8, ,8' I8, ,8'                                
+                                                       "Y8P'   "Y8P'                                 
+    
+    STRING
+end
+
 def welcome_back
+    puts ""
+    puts "Please select an option from our main menu."
+    puts ""
     puts "*** MAIN MENU ***"
-    puts "1) See your current list of shows?"
-    sleep 0.5
-    puts "OR"
-    sleep 1
-    puts "2) Add a new show?"
+    puts "1. See your current list of shows?"
+    puts "2. Add a new show?"
     input = STDIN.gets.chomp
+    puts ""
     if input == "1" && Event.all != []
         list_of_events
     elsif input == "1" && Event.all == []
@@ -47,9 +73,11 @@ end
 def login 
     puts "What is your first name?"
     f_name = STDIN.gets.chomp
+    puts ""
     puts "What is your last name?"
     l_name = STDIN.gets.chomp
-    @@new_user = User.find_or_create_by({first_name: f_name, last_name: l_name})
+    $new_user = User.find_or_create_by({first_name: f_name, last_name: l_name})
+    puts ""
 end 
 
 
@@ -76,15 +104,14 @@ end
 # READING MY EVENTS
 
 def list_of_events
-    puts tp @@new_user.my_shows
+    puts $new_user.my_shows
     puts "What would you like to do next?"
     sleep 1
     puts "1) Return to main menu"
-    sleep 1
     puts "2) Delete event"
-    sleep 1
     puts "3) Look at local shows to add a new event"
     input = STDIN.gets.chomp
+    puts ""
     if input == "1"
         welcome_back
     elsif input == "2"
@@ -106,7 +133,7 @@ end
 #     Event.all.each do |event|
 #         i = 0
 #         if i < Event.all.count
-#             event.show_id == input && event.user_id == @@new_user.id 
+#             event.show_id == input && event.user_id == $new_user.id 
 #             event.delete(input)
 #             puts "That show is now off your list."
 #         elsif
@@ -122,8 +149,9 @@ def delete_event
     input = STDIN.gets.chomp.to_i
     if 
     show = Show.find(input)
-    user = User.find(@@new_user.id)
+    user = User.find($new_user.id)
     Event.where(show_id: show.id, user_id: user.id).destroy_all
+    puts ""
     puts "Your show has been deleted."
     welcome_back
     else 
@@ -169,10 +197,10 @@ end
 #WOULD YOU LIKKE TO CREATE EVENT
 
 def could_create_event
+    puts ""
     puts "Would you like to add one of these to your events?"
     sleep 1
     puts "1) Yes please!"
-    sleep 1
     puts "2) No thank you, I'll return to the main menu."
     input = STDIN.gets.chomp
     if input == "1"
@@ -191,11 +219,23 @@ end
 #CREATE EVENT
 
 def create_event
+    puts ""
     puts "Which show would you like to add to your list of events?"
     input = STDIN.gets.chomp.to_i
     if input.between?(0,21)
-        Event.create({user_id: @@new_user.id, show_id: input, name: "Event"})
+        Event.create({user_id: $new_user.id, show_id: input, name: "Event"})
+        puts ""
+        puts ".".colorize(:red)
+        sleep 0.5
+        puts "..".colorize(:yellow)
+        sleep 0.5
+        puts "...".colorize(:green)
+        sleep 0.5
+        puts ""
         puts "The show has been added to your events list."
+        sleep 1
+        puts "Sending you back to the main menu."
+        sleep 1.5
         welcome_back
     elsif puts "Please enter a number between 1 and 20"
         create_event

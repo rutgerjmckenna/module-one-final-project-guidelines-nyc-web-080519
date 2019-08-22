@@ -8,3 +8,4 @@ gem "require_all"
 gem "table_print"
 gem 'rest-client'
 gem 'dotenv'
+gem 'colorize'
