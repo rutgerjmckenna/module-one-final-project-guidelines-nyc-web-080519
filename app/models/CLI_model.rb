@@ -6,6 +6,9 @@ require 'colorize'
 
 $new_user = User.new
 
+#-----------------------------------------------------------------------------------------------------------------------
+# Welcome and Main Menu 
+
 def greeting
     puts logo.to_s.colorize(:blue)
     puts "Welecome to Showffeur! Making your live music organized.".colorize(:blue)
@@ -64,11 +67,7 @@ def welcome_back
         welcome_back
     end
 end
-#immeditately asks for name and returns your events tied to that name
-    #would you like to add events to your schedule?
 
-
-    #FIND SHOW requirements: city, state, time period (given ranges or day, weekend, or month), time-later-than
 #-----------------------------------------------------------------------------------------------------------------------
 # Login 
 
@@ -85,8 +84,6 @@ end
 
 #-----------------------------------------------------------------------------------------------------------------------
 # READING MY EVENTS
-
-
 
 def find_event
     puts "Which event are you looking for?"
@@ -136,24 +133,6 @@ end
 #-----------------------------------------------------------------------------------------------------------------------
 #DELETE EVENT
 
-# def delete_event
-#     puts "Which event would you like to delete?"
-#     input = STDIN.gets.chomp.to_i
-    
-#     Event.all.each do |event|
-#         i = 0
-#         if i < Event.all.count
-#             event.show_id == input && event.user_id == $new_user.id 
-#             event.delete(input)
-#             puts "That show is now off your list."
-#         elsif
-#             i += 1
-#         else puts "That is not a show in your list"
-#             delete_event
-#         end 
-#     end 
-# end 
-
 def delete_event
     puts "Which event would you like to delete?"
     input = STDIN.gets.chomp.to_i
@@ -170,9 +149,8 @@ def delete_event
     end 
 end 
 
-
 #-----------------------------------------------------------------------------------------------------------------------
-# FINDING A SHOW
+# Seed Shows From API 
 
 # def get_all_our_shows_from_api
 #     all_shows = RestClient.get("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=296&apikey=#{ENV['API_KEY']}")
@@ -192,8 +170,8 @@ end
 # end 
 
 # get_all_our_shows_from_api
-
-
+#-----------------------------------------------------------------------------------------------------------------------
+# Find Show
 
 def find_show
     puts "Here are the shows currently avaliable in your area:"
@@ -204,7 +182,7 @@ def find_show
 end
 
 #-----------------------------------------------------------------------------------------------------------------------
-#WOULD YOU LIKKE TO CREATE EVENT
+#WOULD YOU LIKKE TO CREATE EVENT?
 
 def could_create_event
     puts ""
@@ -255,6 +233,4 @@ def create_event
     elsif input == "exit"
         welcome_back
     end 
-    #exit method
-    #main menu
 end
