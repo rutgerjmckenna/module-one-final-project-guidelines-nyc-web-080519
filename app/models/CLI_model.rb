@@ -213,6 +213,7 @@ def create_event
     puts ""
     puts "Which show would you like to add to your list of events?"
     input = STDIN.gets.chomp.to_i
+    puts ""
     if input.between?(0,21) && $new_user.my_event_ids.each.exclude?(input)
         Event.create({user_id: $new_user.id, show_id: input, name: "Event"}) 
         puts ""
