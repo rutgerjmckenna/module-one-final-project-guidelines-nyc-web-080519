@@ -688,5 +688,4 @@ def create_event
             all_artists_bios
         end
     end
-
 end #app end
