@@ -264,6 +264,7 @@ def create_event
             sleep 2
             find_show
     end
+end 
 
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -294,7 +295,25 @@ def create_event
             sleep 0.5
             puts ""
             could_create_event
+       
         elsif input == "2"
+            sleep 1
+            puts "----------------------------------BIO----------------------------------".colorize(:blue)
+            puts "Dead & Company is a band consisting of former Grateful Dead members Bob Weir," 
+            sleep 1
+            puts "Mickey Hart, and Bill Kreutzmann, along with John Mayer,"
+            sleep 1
+            puts "Oteil Burbridge, and Jeff Chimenti."
+            sleep 1
+            puts "-----------------------------------------------------------------------".colorize(:blue)
+            sleep 3
+            puts ""
+            puts ".".colorize(:blue)
+            sleep 0.5
+            puts "..".colorize(:blue)
+            sleep 0.5
+            puts "...".colorize(:blue)
+            sleep 0.5
             puts ""
             could_create_event
 
@@ -320,27 +339,6 @@ def create_event
             could_create_event
 
         elsif input == "4"
-            sleep 1
-            puts "----------------------------------BIO----------------------------------".colorize(:blue)
-            puts "Dead & Company is a band consisting of former Grateful Dead members Bob Weir," 
-            sleep 1
-            puts "Mickey Hart, and Bill Kreutzmann, along with John Mayer,"
-            sleep 1
-            puts "Oteil Burbridge, and Jeff Chimenti."
-            sleep 1
-            puts "-----------------------------------------------------------------------".colorize(:blue)
-            sleep 3
-            puts ""
-            puts ".".colorize(:blue)
-            sleep 0.5
-            puts "..".colorize(:blue)
-            sleep 0.5
-            puts "...".colorize(:blue)
-            sleep 0.5
-            puts ""
-            could_create_event
-
-        elsif input == "5"
             puts sleep 1
             puts "----------------------------------BIO----------------------------------".colorize(:blue)
             puts "Loud 25 is a one day music festival with guests including the likes of"
@@ -359,7 +357,7 @@ def create_event
             puts ""
             could_create_event
 
-        elsif input == "6"
+        elsif input == "5"
             puts sleep 1
             puts "----------------------------------BIO----------------------------------".colorize(:blue)
             puts "Two Door Cinema Club are a Northern Irish indie rock band from" 
@@ -380,16 +378,31 @@ def create_event
             puts ""
             could_create_event
 
+        elsif input == "6"
+            puts sleep 1
+            puts "----------------------------------BIO----------------------------------".colorize(:blue)
+            puts "Lara Sophie Katy Crokaert, better known as Lara Fabian, is a Canadian-Belgian singer,"
+            sleep 1
+            puts "songwriter, musician, actress and producer. She has sold over 20 million records worldwide"
+            sleep 1
+            puts "as of September 2017 and is one of the best-selling Belgian artists of all time."
+            sleep 1
+            puts "-----------------------------------------------------------------------".colorize(:blue)
+            sleep 3
+            puts ""
+            puts ".".colorize(:blue)
+            sleep 0.5
+            puts "..".colorize(:blue)
+            sleep 0.5
+            puts "...".colorize(:blue)
+            sleep 0.5
+            puts ""
+            could_create_event
+
         elsif input == "7"
             puts sleep 1
             puts "----------------------------------BIO----------------------------------".colorize(:blue)
-            puts "José Álvaro Osorio Balvín is a Colombian reggaeton singer." 
-            sleep 1
-            puts "Balvin was born in Medellín, Colombia. At age 17, he moved to the United States."
-            sleep 1
-            puts "He moved to Oklahoma and New York to learn English"
-            sleep 1
-            puts "and was influenced by the music he heard there."
+            puts "Radio Station Music festival with tons of artists!"
             sleep 1
             puts "-----------------------------------------------------------------------".colorize(:blue)
             sleep 3
@@ -406,12 +419,12 @@ def create_event
         elsif input == "8"
             puts sleep 1
             puts "----------------------------------BIO----------------------------------".colorize(:blue)
-            puts "Lara Sophie Katy Crokaert, better known as Lara Fabian, is a Canadian-Belgian singer,"
-            sleep 1
-            puts "songwriter, musician, actress and producer. She has sold over 20 million records worldwide"
-            sleep 1
-            puts "as of September 2017 and is one of the best-selling Belgian artists of all time."
-            sleep 1
+            puts "José Álvaro Osorio Balvín is a Colombian reggaeton singer."
+            sleep 0.5
+            puts "Balvin was born in Medellín, Colombia. At age 17, he moved to the United States." 
+            sleep 0.5
+            puts "He moved to Oklahoma and New York to learn English and was influenced by the music he heard there."
+            sleep 0.5
             puts "-----------------------------------------------------------------------".colorize(:blue)
             sleep 3
             puts ""
@@ -473,9 +486,13 @@ def create_event
         elsif input == "11"
             puts sleep 1
             puts "----------------------------------BIO----------------------------------".colorize(:blue)
-            puts "Gloria Trevi is a Mexican singer-songwriter, dancer, actress,"
+            puts "Sir Elton Hercules John CBE is an English singer, songwriter, pianist, and composer."
             sleep 1
-            puts "television hostess, music video director and businesswoman."
+            puts "He has worked with lyricist Bernie Taupin since 1967; they have collaborated"
+            sleep 1
+            puts "on more than 30 albums. John has sold more than 300 million records, making him" 
+            sleep 1
+            puts "one of the world's best-selling music artists."
             sleep 1
             puts "-----------------------------------------------------------------------".colorize(:blue)
             sleep 3
@@ -492,9 +509,9 @@ def create_event
         elsif input == "12"
             puts sleep 1
             puts "----------------------------------BIO----------------------------------".colorize(:blue)
-            puts "Kiss is an American rock band formed in New York City in January 1973"
+            puts "Gloria Trevi is a Mexican singer-songwriter, dancer, actress,"
             sleep 1
-            puts "by Paul Stanley, Gene Simmons, Peter Criss, and Ace Frehley."
+            puts "television hostess, music video director and businesswoman."
             sleep 1
             puts "-----------------------------------------------------------------------".colorize(:blue)
             sleep 3
@@ -532,6 +549,46 @@ def create_event
         elsif input == "14"
             puts sleep 1
             puts "----------------------------------BIO----------------------------------".colorize(:blue)
+            puts "Kiss is an American rock band formed in New York City in January 1973"
+            sleep 1
+            puts "by Paul Stanley, Gene Simmons, Peter Criss, and Ace Frehley."
+            sleep 1
+            puts "-----------------------------------------------------------------------".colorize(:blue)
+            sleep 3
+            puts ""
+            puts ".".colorize(:blue)
+            sleep 0.5
+            puts "..".colorize(:blue)
+            sleep 0.5
+            puts "...".colorize(:blue)
+            sleep 0.5
+            puts ""
+            could_create_event
+
+        elsif input == "15"
+            puts sleep 1
+            puts "----------------------------------BIO----------------------------------".colorize(:blue)
+            puts "The Jonas Brothers are an American pop rock band. Formed in 2005,"
+            sleep 1
+            puts "they gained popularity from their appearances on the Disney Channel" 
+            sleep 1
+            puts "television network. They consist of three brothers: Kevin Jonas, Joe Jonas, and Nick Jonas."
+            sleep 1
+            puts "-----------------------------------------------------------------------".colorize(:blue)
+            sleep 3
+            puts ""
+            puts ".".colorize(:blue)
+            sleep 0.5
+            puts "..".colorize(:blue)
+            sleep 0.5
+            puts "...".colorize(:blue)
+            sleep 0.5
+            puts ""
+            could_create_event
+
+        elsif input == "16"
+            puts sleep 1
+            puts "----------------------------------BIO----------------------------------".colorize(:blue)
             puts "Sung Si-kyung is a South Korean singer and television host."
             sleep 1
             puts "He debuted in 2001 and has released seven studio albums in Korean and"
@@ -552,72 +609,7 @@ def create_event
             puts ""
             could_create_event
 
-        elsif input == "15"
-            puts sleep 1
-            puts "----------------------------------BIO----------------------------------".colorize(:blue)
-            puts "In This Moment is an American metal band from Los Angeles, California,"
-            sleep 1
-            puts "formed by singer Maria Brink and guitarist Chris Howorth in 2005." 
-            sleep 1
-            puts "They found drummer Jeff Fabb and started the band as Dying Star."
-            sleep 1
-            puts "-----------------------------------------------------------------------".colorize(:blue)
-            sleep 3
-            puts ""
-            puts ".".colorize(:blue)
-            sleep 0.5
-            puts "..".colorize(:blue)
-            sleep 0.5
-            puts "...".colorize(:blue)
-            sleep 0.5
-            puts ""
-            could_create_event
-
-        elsif input == "16"
-            puts sleep 1
-            puts "----------------------------------BIO----------------------------------".colorize(:blue)
-            puts "Sir Elton Hercules John CBE is an English singer, songwriter, pianist, and composer."
-            sleep 1
-            puts "He has worked with lyricist Bernie Taupin since 1967; they have collaborated"
-            sleep 1
-            puts "on more than 30 albums. John has sold more than 300 million records, making him" 
-            sleep 1
-            puts "one of the world's best-selling music artists."
-            sleep 1
-            puts "-----------------------------------------------------------------------".colorize(:blue)
-            sleep 3
-            puts ""
-            puts ".".colorize(:blue)
-            sleep 0.5
-            puts "..".colorize(:blue)
-            sleep 0.5
-            puts "...".colorize(:blue)
-            sleep 0.5
-            puts ""
-            could_create_event
-
         elsif input == "17"
-            puts sleep 1
-            puts "----------------------------------BIO----------------------------------".colorize(:blue)
-            puts "The Aquabats are an American rock band formed in Orange County, California in 1994." 
-            sleep 1
-            puts "Throughout many fluctuations in the group's line-up, singer The MC Bat Commander" 
-            sleep 1
-            puts "and bassist Crash McLarson have remained the band's two constant fixtures."
-            sleep 1
-            puts "-----------------------------------------------------------------------".colorize(:blue)
-            sleep 3
-            puts ""
-            puts ".".colorize(:blue)
-            sleep 0.5
-            puts "..".colorize(:blue)
-            sleep 0.5
-            puts "...".colorize(:blue)
-            sleep 0.5
-            puts ""
-            could_create_event
-
-        elsif input == "18"
             puts sleep 1
             puts "----------------------------------BIO----------------------------------".colorize(:blue)
             puts "Tame Impala is an Australian psychedelic music project led by multi-instrumentalist"
@@ -640,15 +632,39 @@ def create_event
             puts ""
             could_create_event
 
+        elsif input == "18"
+            puts sleep 1
+            puts "----------------------------------BIO----------------------------------".colorize(:blue)
+            puts "In This Moment is an American metal band from Los Angeles, California,"
+            sleep 1
+            puts "formed by singer Maria Brink and guitarist Chris Howorth in 2005." 
+            sleep 1
+            puts "They found drummer Jeff Fabb and started the band as Dying Star."
+            sleep 1
+            puts "-----------------------------------------------------------------------".colorize(:blue)
+            sleep 3
+            puts ""
+            puts ".".colorize(:blue)
+            sleep 0.5
+            puts "..".colorize(:blue)
+            sleep 0.5
+            puts "...".colorize(:blue)
+            sleep 0.5
+            puts ""
+            could_create_event
+
         elsif input == "19"
             puts sleep 1
             puts "----------------------------------BIO----------------------------------".colorize(:blue)
-            puts "The Aquabats are an American rock band formed in Orange County, California in 1994." 
-            sleep 1
-            puts "Throughout many fluctuations in the group's line-up, singer The MC Bat Commander" 
-            sleep 1
-            puts "and bassist Crash McLarson have remained the band's two constant fixtures."
-            sleep 1
+            sleep 0.5
+            puts "William Martin Joel is an American singer-songwriter, composer, and pianist." 
+            sleep 0.5
+            puts "Commonly nicknamed the 'Piano Man' after his first hit and signature song of the same name," 
+            sleep 0.5
+            puts "he has led a commercially successful career as a solo artist since the 1970s," 
+            sleep 0.5
+            puts "having released twelve studio albums from 1971 to 1993"
+            sleep 0.5
             puts "-----------------------------------------------------------------------".colorize(:blue)
             sleep 3
             puts ""
@@ -664,12 +680,11 @@ def create_event
         elsif input == "20"
             puts sleep 1
             puts "----------------------------------BIO----------------------------------".colorize(:blue)
-            puts "The Jonas Brothers are an American pop rock band. Formed in 2005,"
-            sleep 1
-            puts "they gained popularity from their appearances on the Disney Channel" 
-            sleep 1
-            puts "television network. They consist of three brothers: Kevin Jonas, Joe Jonas, and Nick Jonas."
-            sleep 1
+            sleep 0.5
+            puts "Elizabeth Woolridge Grant, known professionally as Lana Del Rey, is" 
+            sleep 0.5
+            puts "an American singer, songwriter, record producer, poet, model, and music video director."
+            sleep 0.5
             puts "-----------------------------------------------------------------------".colorize(:blue)
             sleep 3
             puts ""
@@ -687,5 +702,4 @@ def create_event
             sleep 1
             all_artists_bios
         end
-    end
-end #app end
+    end 
